@@ -1,0 +1,817 @@
+:root {
+    --burgerheight: 15px;
+    --burgerwidth: 30px;
+    --line-height: 2px;
+    --white: white;
+    --black: black;
+    --headline-color: white;
+    --akademi-color: #61b8cb;
+    --text-color: hsl(0, 0%, 50%);
+    --border-color: hsl(0, 0%, 80%);
+    --background-color: #f3f4f7;
+    --text-color-xd: #707070;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Segoe UI";
+  }
+  
+  /* scrollbar */
+  ::-webkit-scrollbar {
+    width: 0.5em;
+  }
+  
+  ::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px var(--background-color);  */
+    border-radius: 10px;
+    background-color: var(--background-color);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(177, 177, 177);
+  }
+  
+  /* scrollbar end */
+  
+  .flexRow {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+  
+  .flexColumn {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+  
+  h2 {
+    font-size: 1.5em;
+  }
+  
+  h3 {
+    font-size: 1.1em;
+    font-weight: 400;
+  }
+  
+  /* topbar + menu  */
+  #nav {
+    grid-area: nav;
+    z-index: 10;
+    position: absolute;
+  }
+  
+  a {
+    color: var(--white);
+    display: flex;
+  }
+  
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5% 1% 0.5% 1%;
+    background-color: #284458;
+    position: fixed;
+    top: 0;
+  }
+  
+  .topbarLeft {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .topbarRight {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+  }
+  
+  .topbarItem {
+    margin: 0.2em 0 0 0;
+  }
+  
+  .topBarIcon {
+    margin: 0.3em 0.5em 0 0;
+  }
+  
+  .logo {
+    width: 70%;
+  }
+  
+  /* burger menu */
+  .burger {
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    height: var(--burgerheight);
+    width: var(--burgerwidth);
+    align-items: center;
+    margin: 0.5em 0;
+    z-index: 500;
+  }
+  
+  .burger:before,
+  .burger:after,
+  .burger em {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: var(--line-height);
+    background: white;
+    right: 0em;
+    transition: all 0.3s ease;
+  }
+  
+  .burger:before {
+    top: 0em;
+  }
+  
+  .burger:after {
+    bottom: 0em;
+  }
+  
+  .burger em {
+    width: 75%;
+  }
+  
+  .burger.open::before {
+    top: calc(var(--height) - 55%);
+    transform: rotate(-45deg);
+  }
+  
+  .burger.open::after {
+    bottom: calc(var(--height) - 62.5%);
+    transform: rotate(45deg);
+  }
+  
+  .burger.open em {
+    width: 0;
+  }
+  
+  .active {
+    text-decoration: underline;
+    color: var(--akademi-color) !important;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    color: var(--akademi-color);
+  }
+  
+  .navList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    padding: 5% 0 0 0;
+    width: 20%;
+    height: 95vh;
+    margin: auto;
+    background-color: #284458;
+    color: white;
+    transition: ease all 0.3s;
+  }
+  
+  .toplistItem {
+    margin: 1em auto;
+  }
+  
+  .navClosed {
+    right: -100%;
+    top: 1%;
+  }
+  
+  .navOpen {
+    right: 0%;
+    top: 100%;
+  }
+  
+  /* topbar + menu end */
+  
+  .userIcon {
+    font-size: 5em;
+    color: var(--akademi-color);
+  }
+  
+  /* page header */
+  
+  /* header menu */
+  .header {
+    display: grid;
+    grid-template-areas:
+      "headeruser blank headerbntwrap"
+      "headernav none none";
+    grid-template-rows: 1fr;
+    grid-template-columns: 30% 1fr 25%;
+    background-color: var(--white);
+    grid-area: header;
+    padding: 1em 0;
+  }
+  
+  .headeruser {
+    grid-area: headeruser;
+  }
+  
+  .headerNav {
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--text-color);
+    grid-area: headernav;
+  }
+  
+  .headerbntwrap {
+    grid-area: headerbntwrap;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .headerbnt {
+    color: var(--text-color);
+    border-radius: 4px;
+    border: solid 1px var(--border-color);
+    display: flex;
+    gap: 0.5em;
+    height: 2em;
+    padding: 1em;
+    align-items: center;
+  }
+  
+  .headerbnt:hover {
+    cursor: pointer;
+    background-color: var(--background-color);
+  }
+  
+  .headerNav a {
+    color: var(--text-color);
+  }
+  
+  .headerNav a:hover {
+    color: var(--akademi-color);
+  }
+  
+  .header ul {
+    text-decoration: none;
+  }
+  
+  .infotext {
+    margin: 1em;
+  }
+  
+  /* left */
+  .leftsite {
+    background-color: var(--white);
+    padding: 5% 2%;
+    gap: 0.5em;
+    grid-area: leftsite;
+    overflow: auto;
+  }
+  
+  .leftborder {
+    gap: 1em;
+  }
+  
+  .bntfirst {
+    background-color: var(--text-color);
+    color: var(--white);
+    padding: 0.5em;
+    border-radius: 0.2em;
+    cursor: pointer;
+  }
+  
+  .bntfirst:hover {
+    background-color: rgb(121, 121, 121);
+  }
+  
+  .bntsec {
+    border: solid 1px var(--text-color);
+    color: var(--text-color);
+    padding: 0.5em;
+    border-radius: 0.2em;
+    cursor: pointer;
+  }
+  
+  .bntsec:hover {
+    background-color: var(--background-color);
+  }
+  
+  .inputvalue {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  
+  /* filter */
+  .css-xb97g8:hover {
+    background-color: #62b7ca !important;
+    color: var(--white) !important;
+    cursor: pointer;
+    border-radius: 1.5em !important;
+  }
+  
+  .react-datepicker__month--selected,
+  .react-datepicker__month--in-selecting-range,
+  .react-datepicker__month--in-range,
+  .react-datepicker__quarter--selected,
+  .react-datepicker__quarter--in-selecting-range,
+  .react-datepicker__quarter--in-range {
+    background-color: var(--akademi-color) !important;
+  }
+  
+  .css-1rhbuit-multiValue {
+    background-color: var(--akademi-color) !important;
+    border-radius: 1.5em !important;
+    padding: 0.2em;
+  }
+  
+  .react-datepicker-ignore-onclickoutside {
+    color: hsl(0, 0%, 20%) !important;
+  }
+  
+  .react-datepicker__input-container input {
+    background-color: hsl(0, 0%, 100%);
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    border: solid 1px hsl(0, 0%, 80%);
+    padding: 0.6em;
+    margin: 0.5em auto;
+  }
+  
+  .react-datepicker__input-container input[value] {
+    color: var(--text-color);
+    max-width: 100%;
+    font-size: 0.9em;
+  }
+  
+  .css-1pahdxg-control:hover {
+    border-color: black !important;
+  }
+  
+  .css-1pahdxg-control {
+    box-shadow: 0 0 0 1px black !important;
+  }
+  
+  .togglebnt {
+    width: 100%;
+    background-color: var(--white);
+    border: solid 1px var(--border-color);
+    color: var(--text-color);
+    border-radius: 3px;
+    padding: 0.5em 0 0.5em 0.5em;
+    cursor: pointer;
+  }
+  
+  .react-datepicker__day--keyboard-selected,
+  .react-datepicker__month-text--keyboard-selected,
+  .react-datepicker__quarter-text--keyboard-selected,
+  .react-datepicker__year-text--keyboard-selecte {
+    background-color: var(--akademi-color) !important;
+  }
+  
+  /* sted */
+  #map {
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    left: 15%;
+    overflow: hidden;
+  }
+  
+  .mapContainer {
+    width: 50em;
+    height: 40vh;
+  }
+  
+  .sbnt {
+    color: var(--white);
+    border-radius: 4px;
+    border: solid 1px var(--border-color);
+    text-align: center;
+    background-color: var(--akademi-color);
+    width: 30%;
+    margin: 0 auto;
+    padding: 0.4em;
+  }
+  
+  .sbnt:hover {
+    cursor: pointer;
+    background-color: #59a5b6;
+  }
+  
+  /* left end */
+  
+  /* middel */
+  .row.header-row {
+    display: none;
+  }
+  
+  .pure-modal .close {
+    display: none;
+  }
+  
+  .sortable {
+    font-weight: 200;
+    font-size: 20px;
+    color: var(--text-color-xd);
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /* filterpage */
+  .main {
+    display: grid;
+    grid-template-areas:
+      "nav nav nav nav"
+      "leftsite header header header"
+      "leftsite page page page"
+      "footer footer footer footer";
+    grid-template-rows: 4.5em 9.5em 1fr 1em;
+    grid-template-columns: 15% 15% 1fr 15%;
+    gap: 0.5em;
+    height: 100vh;
+    background-color: #f3f4f7;
+  }
+  
+  /* job */
+  
+  .jobs {
+    display: grid;
+    grid-template-areas:
+      "nav nav nav nav"
+      "leftsite header header header"
+      "leftsite joblist jobinfo addlist";
+    grid-template-rows: 4.5em 9.5em 1fr;
+    grid-template-columns: 15% 15% 1fr 15%;
+    height: 96.6vh;
+    gap: 0.5em;
+  }
+  
+  .jobinfo {
+    grid-area: jobinfo;
+    overflow: auto;
+    padding: 30em 0 0 0;
+    text-align: center;
+    gap: 5em;
+    margin: 0 auto;
+    background-color: var(--white);
+  }
+  
+  .addlist {
+    grid-area: addlist;
+    overflow: auto;
+    border-left: solid 0.5em var(--background-color);
+    background-color: var(--white);
+  }
+  
+  .filterable-table {
+    text-align: left;
+    width: 100%;
+    padding: 0.5em;
+  }
+  
+  .joblist {
+    grid-area: joblist;
+    overflow: auto;
+    padding: 0.5em 0 0 0.5em;
+    background-color: var(--white);
+  }
+  
+  .joblist h3,
+  .sublist h3,
+  .comlist h3 {
+    font-weight: 200;
+    font-size: 20px;
+    color: var(--text-color-xd);
+  }
+  
+  .jobinfotext {
+    width: 95%;
+    margin: 0 auto;
+  }
+  
+  .thead tr {
+    cursor: pointer;
+  }
+  
+  tbody tr:hover {
+    background-color: var(--border-color);
+  }
+  
+  tbody tr td {
+    height: 50px;
+    cursor: pointer;
+    border-bottom: solid 1px var(--border-color);
+    padding: 0.2em 0;
+  }
+  
+  .cirkelsection {
+    text-align: center;
+    z-index: 0;
+  }
+  
+  .cirkelsection h3 {
+    color: var(--text-color-xd);
+    font-size: 1.5em;
+    font-weight: 500;
+  }
+  
+  .cirkelsection g {
+    cursor: pointer;
+  }
+  
+  /* sub */
+  .subs {
+    display: grid;
+    grid-template-areas:
+      "nav nav nav nav"
+      "leftsite header header header"
+      "leftsite sublist subinfo addlist";
+    grid-template-rows: 4.5em 9.5em 1fr;
+    grid-template-columns: 15% 15% 1fr 15%;
+    height: 96.6vh;
+    gap: 0.5em;
+  }
+  
+  .subinfo {
+    grid-area: subinfo;
+    overflow: auto;
+    padding: 30em 0 0 0;
+    text-align: center;
+    gap: 5em;
+    margin: 0 auto;
+    background-color: var(--white);
+  }
+  
+  .sublist {
+    grid-area: sublist;
+    overflow: auto;
+    padding: 0.5em 0 0 0.5em;
+    background-color: var(--white);
+  }
+  
+  /* com */
+  
+  .coms {
+    display: grid;
+    grid-template-areas:
+      "nav nav nav nav"
+      "leftsite header header header"
+      "leftsite comlist cominfo addlist";
+    grid-template-rows: 4.5em 9.5em 1fr;
+    grid-template-columns: 15% 15% 1fr 15%;
+    height: 96.6vh;
+    gap: 0.5em;
+  }
+  
+  .cominfo {
+    grid-area: cominfo;
+    overflow: auto;
+    padding: 30em 0 0 0;
+    text-align: center;
+    gap: 5em;
+    margin: 0 auto;
+    width: 100%;
+    background-color: var(--white);
+  }
+  
+  .comlist {
+    grid-area: comlist;
+    overflow: auto;
+    padding: 0.5em 0 0 0.5em;
+    background-color: var(--white);
+  }
+  .map{
+    margin: 2em 0 0 0;
+  }
+  
+  /* adds */
+  
+  .adds {
+    display: grid;
+    grid-template-areas:
+      "nav nav nav nav"
+      "leftsite header header header"
+      "leftsite joblist addinfo addlist";
+    grid-template-rows: 4.5em 9.5em 1fr;
+    grid-template-columns: 15% 15% 1fr 15%;
+    height: 96.6vh;
+    gap: 0.5em;
+  }
+  
+  .url {
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    font-size: 0.8em;
+  }
+  
+  .url:hover {
+    text-decoration: underline;
+    color: var(--akademi-color) !important;
+    cursor: pointer;
+  }
+  
+  .addinfo {
+    grid-area: addinfo;
+    overflow: auto;
+    padding: 15em 0 0 0;
+    text-align: center;
+    gap: 5em;
+    margin: 0 auto;
+    width: 100%;
+    background-color: var(--white);
+    position: relative;
+  }
+  
+  .addwrap {
+    gap: 2em;
+    justify-content: space-evenly;
+  }
+  
+  .addtext {
+    padding: 1em;
+    text-align: left;
+  }
+  
+  .addtext span {
+    background-color: rgba(255, 255, 0, 0.534);
+  }
+  
+  .addtext p,
+  .addtext h4,
+  .addimages img {
+    margin: 0 2em 2em 2em;
+  }
+  
+  .addimages {
+    padding: 1em;
+    margin: 2em;
+  }
+  
+  /* middel end */
+  
+  /* right */
+  .rightsite {
+    background-color: var(--white);
+    grid-area: rightsite;
+  }
+  
+  /* page */
+  .page {
+    grid-area: page;
+    overflow: auto;
+  }
+  
+  /* Home */
+  .home {
+    background-color: #366d7a;
+    margin: 4.5em 0 0 0;
+    /*background-image: url(../images/background.jpg);*/
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 90%;
+  }
+
+  .pure-modal {
+    width: stretch !important;
+    height: stretch !important;
+  }
+  
+
+  
+  .homewrap {
+    width: 90%;
+    margin: 5em auto;
+    height: 70hv;
+  }
+  
+  .white {
+    background-color: white;
+    height: 30vh;
+    width: 100%;
+  }
+  
+  #navhome {
+    z-index: 10;
+    position: absolute;
+  }
+  
+  #navhome .topbar {
+    background-color: #366d7a;
+  }
+  
+  .loop {
+    width: 50%;
+  }
+  
+  .loop img {
+    width: 100%;
+  }
+  
+  .hometext {
+    width: 50%;
+    color: var(--white);
+  }
+  
+  .hometext p {
+    width: 65%;
+    line-height: 1.7em;
+  }
+  
+  .hometext h2 {
+    font-size: 2em;
+  }
+  
+  .hometext h3 {
+    font-size: 1.7em;
+    width: 60%;
+  }
+  
+  .homebnt .bnt {
+    border: solid 1px white;
+    padding: 0.6em 1em;
+    font-weight: 700;
+  }
+  
+  .readbnt {
+    color: #366d7a;
+    background-color: var(--white);
+  }
+  
+  .homebnt .startbnt {
+    padding: 0.6em 5em;
+  }
+  
+  .homebnt .startbnt:hover {
+    background-color: #30626d;
+    color: var(--white);
+  }
+  
+  .homebnt .bnt:hover {
+    cursor: pointer;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  
+  .homebnt {
+    justify-content: flex-start;
+    gap: 2em;
+  }
+  
+  .cirkel {
+    background-color: var(--white);
+    width: 12em;
+    height: 12em;
+    background-color: var(--white);
+    border-radius: 100%;
+    position: relative;
+    margin: -2.5em 0 0 0;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  
+  .cirkelicon {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4em;
+    color: #284458;
+  }
+  
+  .cirkel p {
+    text-align: center;
+    margin: 14em auto 0 0;
+  }
+  
+  .cirkel:hover {
+    box-shadow: rgba(28, 28, 31, 0.2) 1px 7px 50px 1px;
+    cursor: pointer;
+  }
+  
+  .cirkelwrap {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* footer */
+  .footer {
+    grid-area: footer;
+  }
+  
+  .footer {
+    color: var(--headline-color);
+  }
